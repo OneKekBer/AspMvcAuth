@@ -21,8 +21,10 @@ namespace EmptyAspMvcAuth.Controllers
         [Route("/auth/getAll")]
         public async Task<ActionResult> GetAll()
         {
+            // There is a better way to handle exceptions, please read about Unhandled Excepiton middlewares
             try
             {
+                // It is pointless since you are using non-async code. This makes things actually slower. You are missing the point of the async programming
                 var users = await Task.Run(() => _db.users );
 
                 return Ok(users);
@@ -37,6 +39,8 @@ namespace EmptyAspMvcAuth.Controllers
         [Route("/auth/register")]
         public async Task<ActionResult> Register([FromBody] RegisterDto registerData)
         {
+            // Can be used like that, but when you will have a lot of different data it will become complex
+            // Please read about DTO validation attributes
             if (registerData == null)
                 return BadRequest("register data is null");
             try

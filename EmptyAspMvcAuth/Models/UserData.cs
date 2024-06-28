@@ -8,6 +8,7 @@
 
         public string PasswordHash { get; init; }
 
+        // PasswordHash = password ? Use a consistent name
         public UserData(string login, string password)
         {
             Login = login;

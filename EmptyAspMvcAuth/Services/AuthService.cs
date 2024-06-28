@@ -7,6 +7,9 @@ namespace EmptyAspMvcAuth.Services
 {
     public class AuthService
     {
+        // such naming looks strange, pick a different one or don't use acronyms
+        // Btw. If you are planning to replace it later with real db calls, it will be hard for you to switch
+        // because you are no using interfaces
         DataBaseService _DB { get; init; }
 
         public AuthService(DataBaseService dataBase)
@@ -22,7 +25,7 @@ namespace EmptyAspMvcAuth.Services
         private static bool IsPasswordHashesEquals(UserData user, string incomePassword)
         {
             if (user.PasswordHash == ConvertPasswordToHash(incomePassword))
-                return true;
+                return true; // Don't forget about spaces between code-blocks
             return false;
         }
 
@@ -31,7 +34,9 @@ namespace EmptyAspMvcAuth.Services
             var user = _DB.FindUserByLogin(registerData.Login);
 
             if (!IsPasswordHashesEquals(user, registerData.Password))
-                throw new Exception("Password is incorrect");
+                throw new Exception("Password is incorrect"); 
+            // You could find more suitable exception type or create a custom one
+            // Exception isn't specific enough
 
             return user;
         }

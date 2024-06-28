@@ -2,8 +2,10 @@
 
 namespace EmptyAspMvcAuth.Services
 {
+    // It's not really a service, but even if you decide to add one, please don't forget about interfaces
     public class DataBaseService
     {
+        // You should never use attributes directly. Consider swapping this to property
         public List<UserData> users = new List<UserData>();
 
         public bool IsLoginExists(string login)
